@@ -26,7 +26,7 @@ ex) git checkout -b apply-feedback
 ```
 ---
 
-##기능 요구사항
+## 기능 요구사항
 
 
 1. 블랙잭 게임
