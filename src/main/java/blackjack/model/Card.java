@@ -13,4 +13,9 @@ public class Card {
     public CardNumber getNumber() {
         return cardNumber;
     }
+
+    @Override
+    public String toString() {
+        return cardNumber.getName() + cardType.getKoreanName();
+    }
 }
