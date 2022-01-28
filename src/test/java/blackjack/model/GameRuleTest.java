@@ -25,6 +25,35 @@ class GameRuleTest {
         assertThat(losers).contains(loser1, loser2);
     }
 
+    @Test
+    void findWinners_21을_넘지_않으면서_21에_가장_가까운_플레이어가_1명일_때() {
+        //given
+        Player winner = new GeneralPlayer(getCardsOnlyCLOVER(CardNumber.A, CardNumber.JACK, CardNumber.QUEEN));
+        Player loser1 = new GeneralPlayer(getCardsOnlyCLOVER(CardNumber.FIVE, CardNumber.JACK, CardNumber.QUEEN));
+        Player loser2 = new GeneralPlayer(getCardsOnlyCLOVER(CardNumber.TWO, CardNumber.THREE, CardNumber.FOUR));
+
+        //when
+        List<Player> winners = GameRule.findWinners(Arrays.asList(winner, loser1, loser2));
+
+        //then
+        assertThat(winners).contains(winner);
+    }
+
+    @Test
+    void findWinners_21을_넘지_않으면서_21에_가장_가까운_플레이어가_여러명일_때() {
+        //given
+        Player winner1 = new GeneralPlayer(getCardsOnlyCLOVER(CardNumber.A, CardNumber.JACK, CardNumber.QUEEN));
+        Player winner2 = new GeneralPlayer(getCardsOnlyCLOVER(CardNumber.SIX, CardNumber.SEVEN, CardNumber.EIGHT));
+        Player loser1 = new GeneralPlayer(getCardsOnlyCLOVER(CardNumber.FIVE, CardNumber.JACK, CardNumber.QUEEN));
+        Player loser2 = new GeneralPlayer(getCardsOnlyCLOVER(CardNumber.TWO, CardNumber.THREE, CardNumber.FOUR));
+
+        //when
+        List<Player> winners = GameRule.findWinners(Arrays.asList(winner1,winner2, loser1, loser2));
+
+        //then
+        assertThat(winners).contains(winner1, winner2);
+    }
+
     private Cards getCardsOnlyCLOVER(CardNumber num1, CardNumber num2, CardNumber num3) {
         Cards cards = new Cards(Arrays.asList(
                 new Card(CardType.CLOVER, num1),
