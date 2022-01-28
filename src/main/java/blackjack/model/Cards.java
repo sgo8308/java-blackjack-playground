@@ -32,6 +32,15 @@ public class Cards {
                 .map(card -> card.getNumber())
                 .filter(cardNumber -> cardNumber.equals(CardNumber.A))
                 .count();
+    }
 
+    public void add(Card card) {
+        cards.add(card);
+    }
+
+    @Override
+    public String toString() {
+        String string = cards.stream().map(card -> card.toString() + ", ").reduce("", String::concat);
+        return string.substring(0, string.length() - 2);
     }
 }
