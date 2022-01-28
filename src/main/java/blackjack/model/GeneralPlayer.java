@@ -6,11 +6,23 @@ public class GeneralPlayer implements Player {
 
     private Cards cards = new Cards(new ArrayList<>());
 
-    void addCard(Card card) {
+    public GeneralPlayer() {
+    }
+
+    public GeneralPlayer(Cards cards) {
+        this.cards = cards;
+    }
+
+    public void addCard(Card card) {
         cards.add(card);
     }
 
-    String getCardsState() {
+    public String getCardsState() {
         return cards.toString();
+    }
+
+    @Override
+    public int getSumOfCards() {
+        return cards.getSum();
     }
 }
