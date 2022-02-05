@@ -38,9 +38,17 @@ public class Cards {
         cards.add(card);
     }
 
+    public boolean isSize(int size) {
+        return cards.size() == size;
+    }
+
     @Override
     public String toString() {
         String string = cards.stream().map(card -> card.toString() + ", ").reduce("", String::concat);
         return string.substring(0, string.length() - 2);
+    }
+
+    public String getCardResult() {
+        return toString() + "- 결과: " + getSum();
     }
 }
