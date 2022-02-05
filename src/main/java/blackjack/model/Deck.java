@@ -16,7 +16,7 @@ public class Deck {
         }
     }
 
-    public static Card drawAndRemoveCardFromDeck() {
+    public static Card drawAndRemove() {
         int randomIndex = getRandomIndex();
         Card card = cards.get(randomIndex);
         cards.remove(randomIndex);
@@ -29,6 +29,6 @@ public class Deck {
 
     private static int getRandomIndex() {
         Random random = new Random();
-        return random.nextInt(52);
+        return random.nextInt(cards.size());
     }
 }
