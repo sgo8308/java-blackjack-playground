@@ -6,5 +6,15 @@ public interface Player {
 
     String getCardsState();
 
+    String getResult();
+
     int getSumOfCards();
+
+    boolean canDrawMore();
+
+    boolean isBlackJack();
+
+    String getName();
+
+    String getType();
 }

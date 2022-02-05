@@ -2,9 +2,13 @@ package blackjack.model;
 
 import java.util.ArrayList;
 
-public class AbstractPlayer implements Player{
+public abstract class AbstractPlayer implements Player{
 
     protected Cards cards = new Cards(new ArrayList<>());
+    protected PlayerName name;
+
+    @Override
+    public abstract boolean canDrawMore();
 
     public AbstractPlayer() {
     }
@@ -18,11 +22,26 @@ public class AbstractPlayer implements Player{
     }
 
     public String getCardsState() {
-        return cards.toString();
+        return getName() + " 카드: " + cards.toString();
     }
 
     @Override
     public int getSumOfCards() {
         return cards.getSum();
+    }
+
+    @Override
+    public boolean isBlackJack() {
+        return cards.getSum() == GameRule.BLACKJACK_NUMBER && cards.isSize(2);
+    }
+
+    @Override
+    public String getName() {
+        return name.getName();
+    }
+
+    @Override
+    public String getResult() {
+        return getName() + " 카드: " + cards.getCardResult();
     }
 }
