@@ -19,10 +19,10 @@ class GameRuleTest {
         Player noLoser2 = new GeneralPlayer(getCardsOnlyCLOVER(CardNumber.A, CardNumber.JACK, CardNumber.QUEEN));
 
         //when
-        List<Player> losers = GameRule.findLosers(Arrays.asList(loser1, loser2, noLoser1, noLoser2));
-
+        Players losers = GameRule.findLosers(new Players(Arrays.asList(loser1, loser2, noLoser1, noLoser2)));
+        Players expectedPlayers = new Players(Arrays.asList(loser1, loser2));
         //then
-        assertThat(losers).contains(loser1, loser2);
+        assertThat(losers).isEqualTo(expectedPlayers);
     }
 
     @Test
@@ -33,10 +33,10 @@ class GameRuleTest {
         Player loser2 = new GeneralPlayer(getCardsOnlyCLOVER(CardNumber.TWO, CardNumber.THREE, CardNumber.FOUR));
 
         //when
-        List<Player> winners = GameRule.findWinners(Arrays.asList(winner, loser1, loser2));
-
+        Players winners = GameRule.findWinners(new Players(Arrays.asList(winner, loser1, loser2)));
+        Players expectedPlayers = new Players(Arrays.asList(winner));
         //then
-        assertThat(winners).contains(winner);
+        assertThat(winners).isEqualTo(expectedPlayers);
     }
 
     @Test
@@ -48,10 +48,10 @@ class GameRuleTest {
         Player loser2 = new GeneralPlayer(getCardsOnlyCLOVER(CardNumber.TWO, CardNumber.THREE, CardNumber.FOUR));
 
         //when
-        List<Player> winners = GameRule.findWinners(Arrays.asList(winner1,winner2, loser1, loser2));
-
+        Players winners = GameRule.findWinners(new Players(Arrays.asList(winner1,winner2, loser1, loser2)));
+        Players expectedPlayers = new Players(Arrays.asList(winner1, winner2));
         //then
-        assertThat(winners).contains(winner1, winner2);
+        assertThat(winners).isEqualTo(expectedPlayers);
     }
 
     private Cards getCardsOnlyCLOVER(CardNumber num1, CardNumber num2, CardNumber num3) {
